@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:simasam/screens/edukasipage.dart';
 import 'package:simasam/modules/userdata.dart';
+import 'package:simasam/screens/gamedragsampah.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -99,16 +100,18 @@ class _HomePageState extends State<HomePage> {
                         ],
                       )),
                       Container(
-                          child: const Padding(
-                              padding: EdgeInsets.only(left: 150),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.notifications,
-                                      color: Colors.white),
-                                  Padding(padding: EdgeInsets.only(left: 20)),
-                                  Icon(Icons.search, color: Colors.white),
-                                ],
-                              )))
+                          alignment: Alignment.topRight,
+                              child: Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Icon(Icons.notifications,
+                                        color: Colors.white),
+                                    Padding(padding: EdgeInsets.only(left: 20)),
+                                    Icon(Icons.search, color: Colors.white),
+                                  ],
+                                ),
+                              ))
                     ],
                   ),
                 ),
@@ -295,7 +298,7 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const EdukasiPage()));
+                                              const GameDragSampah()));
                                 },
                                 child: Container(
                                   child: Center(
