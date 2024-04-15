@@ -2,9 +2,24 @@
 
 import 'package:flutter/material.dart';
 import 'package:simasam/screens/edukasipage.dart';
+import 'package:simasam/modules/userdata.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  late Future<UserData> futureUserData;
+  String name = '';
+  @override
+  void initState() {
+    super.initState();
+    futureUserData = UserData.connectToApi('1');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +27,7 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
           child: ListView(children: [
         Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0xFFF7F7F7),
             ),
             height: 1000,
@@ -38,14 +53,28 @@ class HomePage extends StatelessWidget {
                                 width: 35, height: 35, fit: BoxFit.cover)),
                       ),
                       Container(
-                          child: const Column(
+                          child: Column(
                         children: [
+                        
                           Padding(
                               padding: EdgeInsets.only(top: 10, left: 8),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Halo, Karno',
+                                   FutureBuilder<UserData>(
+                            future: futureUserData,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return CircularProgressIndicator();
+                              } else if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              } else if (snapshot.hasData) {
+                                // return Text(snapshot.data!.name);
+                                return Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
+                                    Text('Halo, ${snapshot.data!.name}!',
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
@@ -58,6 +87,13 @@ class HomePage extends StatelessWidget {
                                       style: TextStyle(
                                           fontSize: 14,
                                           color: Color(0xFFE0E0E0)))
+                                  ],)
+                                );
+                              } else {
+                                return Text('No data available');
+                              }
+                            },
+                          ),
                                 ],
                               )),
                         ],
@@ -203,11 +239,11 @@ class HomePage extends StatelessWidget {
                                       color: const Color(0xFF18654A),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    child: Column(
+                                    child: const Column(
                                       children: [
                                         Icon(Icons.home,
                                             size: 38, color: Colors.white),
-                                        const SizedBox(height: 7),
+                                        SizedBox(height: 7),
                                         Text(
                                           'Tps Terdekat',
                                           style: TextStyle(
@@ -223,7 +259,8 @@ class HomePage extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => EdukasiPage()));
+                                          builder: (context) =>
+                                              const EdukasiPage()));
                                 },
                                 child: Container(
                                   child: Center(
@@ -235,11 +272,11 @@ class HomePage extends StatelessWidget {
                                         color: const Color(0xFF18654A),
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      child: Column(
+                                      child: const Column(
                                         children: [
                                           Icon(Icons.home,
                                               size: 38, color: Colors.white),
-                                          const SizedBox(height: 7),
+                                          SizedBox(height: 7),
                                           Text(
                                             'Klasifikasi',
                                             style: TextStyle(
@@ -257,7 +294,8 @@ class HomePage extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => EdukasiPage()));
+                                          builder: (context) =>
+                                              const EdukasiPage()));
                                 },
                                 child: Container(
                                   child: Center(
@@ -269,11 +307,11 @@ class HomePage extends StatelessWidget {
                                         color: const Color(0xFF18654A),
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      child: Column(
+                                      child: const Column(
                                         children: [
                                           Icon(Icons.home,
                                               size: 38, color: Colors.white),
-                                          const SizedBox(height: 7),
+                                          SizedBox(height: 7),
                                           Text(
                                             'Edukasi',
                                             style: TextStyle(
@@ -291,7 +329,8 @@ class HomePage extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => EdukasiPage()));
+                                          builder: (context) =>
+                                              const EdukasiPage()));
                                 },
                                 child: Container(
                                   child: Center(
@@ -303,11 +342,11 @@ class HomePage extends StatelessWidget {
                                         color: const Color(0xFF18654A),
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      child: Column(
+                                      child: const Column(
                                         children: [
                                           Icon(Icons.home,
                                               size: 38, color: Colors.white),
-                                          const SizedBox(height: 7),
+                                          SizedBox(height: 7),
                                           Text(
                                             'Pelaporan',
                                             style: TextStyle(
