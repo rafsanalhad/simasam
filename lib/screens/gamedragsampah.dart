@@ -54,26 +54,59 @@ class _GameDragSampahState extends State<GameDragSampah> {
               ),
             )),
             Positioned(
-              top: 0,
               child: Container(
-                  height: 470,
                   child: Column(
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Center(
-                            child: Row(children: [
-                              Image(
+                            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                               DragTarget(
+                                  onWillAcceptWithDetails: (value) => true,
+                                  onAcceptWithDetails: (value) {
+                                    print(value);
+                                    setState(() {
+                                      checkImage =
+                                          true;
+                                    print('accept');
+                                    poin += 10;
+                                    });
+                                  },
+                                  builder: (context, candidates, rejected) {
+                                    return (checkImage) ?  Image(
                                   image: AssetImage(
                                       'assets/img/tempat_sampah_gelas.png'),
                                   width: 110,
-                                  height: 230),
-                              Image(
+                                  height: 219) : Image(
+                                  image: AssetImage(
+                                      'assets/img/tempat_sampah_gelas.png'),
+                                  width: 110,
+                                  height: 219);
+                                  }),
+                               DragTarget(
+                                  onWillAcceptWithDetails: (value) => true,
+                                  onAcceptWithDetails: (value) {
+                                    print(value);
+                                    setState(() {
+                                      checkImage =
+                                          true;
+                                    print('accept');
+                                    poin += 10;
+                                    });
+                                  },
+                                  builder: (context, candidates, rejected) {
+                                    return (checkImage) ?  Image(
                                   image: AssetImage(
                                       'assets/img/tempat_sampah_kertas.png'),
                                   width: 110,
-                                  height: 230),
+                                  height: 219) : Image(
+                                  image: AssetImage(
+                                      'assets/img/tempat_sampah_kertas.png'),
+                                  width: 110,
+                                  height: 219);
+                                  }),
                             ]),
                           ),
                         ],
@@ -81,6 +114,7 @@ class _GameDragSampahState extends State<GameDragSampah> {
                       Column(
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               DragTarget(
                                   onWillAcceptWithDetails: (value) => true,
@@ -105,16 +139,50 @@ class _GameDragSampahState extends State<GameDragSampah> {
                                   height: 219);
                                   }),
                             
-                              Image(
+                               DragTarget(
+                                  onWillAcceptWithDetails: (value) => true,
+                                  onAcceptWithDetails: (value) {
+                                    print(value);
+                                    setState(() {
+                                      checkImage =
+                                          true;
+                                    print('accept');
+                                    poin += 10;
+                                    });
+                                  },
+                                  builder: (context, candidates, rejected) {
+                                    return (checkImage) ?  Image(
                                   image: AssetImage(
                                       'assets/img/tempat_sampah_organik.png'),
                                   width: 110,
-                                  height: 219),
-                              Image(
+                                  height: 219) : Image(
+                                  image: AssetImage(
+                                      'assets/img/tempat_sampah_organik.png'),
+                                  width: 110,
+                                  height: 219);
+                                  }),
+                              DragTarget(
+                                  onWillAcceptWithDetails: (value) => true,
+                                  onAcceptWithDetails: (value) {
+                                    print(value);
+                                    setState(() {
+                                      checkImage =
+                                          true;
+                                    print('accept');
+                                    poin += 10;
+                                    });
+                                  },
+                                  builder: (context, candidates, rejected) {
+                                    return (checkImage) ?  Image(
                                   image: AssetImage(
                                       'assets/img/tempat_sampah_plastik.png'),
                                   width: 110,
-                                  height: 219),
+                                  height: 219) : Image(
+                                  image: AssetImage(
+                                      'assets/img/tempat_sampah_plastik.png'),
+                                  width: 110,
+                                  height: 219);
+                                  }),
                             ],
                           ),
                         ],
