@@ -9,6 +9,7 @@ class GameDragSampah extends StatefulWidget {
 
 class _GameDragSampahState extends State<GameDragSampah> {
   bool checkImage = false;
+    int poin =0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +35,7 @@ class _GameDragSampahState extends State<GameDragSampah> {
                       child: Text('Taruh Sampah Ke Tempat Yang Benar'),
                     ),
                     Center(
-                      child: Text('Poin: 0'),
+                      child: Text('Poin: $poin'),
                     ),
                   ],
                 )),
@@ -55,7 +56,7 @@ class _GameDragSampahState extends State<GameDragSampah> {
             Positioned(
               top: 0,
               child: Container(
-                  height: 450,
+                  height: 470,
                   child: Column(
                     children: [
                       Column(
@@ -89,6 +90,7 @@ class _GameDragSampahState extends State<GameDragSampah> {
                                       checkImage =
                                           true;
                                     print('accept');
+                                    poin += 10;
                                     });
                                   },
                                   builder: (context, candidates, rejected) {
@@ -96,17 +98,13 @@ class _GameDragSampahState extends State<GameDragSampah> {
                                   image: AssetImage(
                                       'assets/img/tempat_sampah_metal.png'),
                                   width: 110,
-                                  height: 219) : Container(
-                                      width: 110,
-                                      height: 219,
-                                      color: Colors.red,
-                                    );
-                                  }),
-                              Image(
+                                  height: 219) : Image(
                                   image: AssetImage(
                                       'assets/img/tempat_sampah_metal.png'),
                                   width: 110,
-                                  height: 219),
+                                  height: 219);
+                                  }),
+                            
                               Image(
                                   image: AssetImage(
                                       'assets/img/tempat_sampah_organik.png'),
