@@ -229,6 +229,7 @@ class _HomePageState extends State<HomePage> {
                           width: MediaQuery.of(context).size.width - 40,
                           height: 100, // set tinggi GridView sesuai kebutuhan
                           child: GridView.count(
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true, // atur shrinkWrap ke true
                             crossAxisCount: 4, // ubah crossAxisCount menjadi 4
                             children: [
