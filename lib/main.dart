@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simasam/screens/deteksisampahpage.dart';
 import 'package:simasam/screens/homepage.dart';
 
 void main() {
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const DeteksiSampahPage(),
     );
   }
 }
