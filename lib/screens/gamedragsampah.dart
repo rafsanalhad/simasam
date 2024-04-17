@@ -81,13 +81,13 @@ class _GameDragSampahState extends State<GameDragSampah> {
                                     ? Image.asset(
                                         'assets/img/tempat_sampah_gelas.png',
                                         width: 110,
-                                        height: 225,
+                                        height: 210,
                                           fit: BoxFit.cover,
                                       )
                                     : Image.asset(
                                         'assets/img/tempat_sampah_gelas.png',
                                         width: 110,
-                                        height: 240,
+                                        height: 210,
                                           fit: BoxFit.cover,
                                       );
                               },
@@ -109,13 +109,13 @@ class _GameDragSampahState extends State<GameDragSampah> {
                                       ? Image.asset(
                                           'assets/img/tempat_sampah_kertas.png',
                                           width: 110,
-                                          height: 219,
+                                          height: 210,
                                            fit: BoxFit.cover,
                                         )
                                       : Image.asset(
                                           'assets/img/tempat_sampah_kertas.png',
                                           width: 110,
-                                          height: 219,
+                                          height: 210,
                                             fit: BoxFit.cover,
                                         );
                                 },
@@ -143,13 +143,13 @@ class _GameDragSampahState extends State<GameDragSampah> {
                                   ? Image.asset(
                                       'assets/img/tempat_sampah_metal.png',
                                       width: 110,
-                                      height: 219,
+                                      height: 210,
                                        fit: BoxFit.cover,
                                     )
                                   : Image.asset(
                                       'assets/img/tempat_sampah_metal.png',
                                       width: 110,
-                                      height: 219,
+                                      height: 210,
                                        fit: BoxFit.cover,
                                     );
                             },
@@ -169,13 +169,13 @@ class _GameDragSampahState extends State<GameDragSampah> {
                                   ? Image.asset(
                                       'assets/img/tempat_sampah_organik.png',
                                       width: 110,
-                                      height: 219,
+                                      height: 210,
                                        fit: BoxFit.cover,
                                     )
                                   : Image.asset(
                                       'assets/img/tempat_sampah_organik.png',
                                       width: 110,
-                                      height: 219,
+                                      height: 210,
                                        fit: BoxFit.cover,
                                     );
                             },
@@ -195,13 +195,13 @@ class _GameDragSampahState extends State<GameDragSampah> {
                                   ? Image.asset(
                                       'assets/img/tempat_sampah_plastik.png',
                                       width: 110,
-                                      height: 236,
+                                      height: 223,
                                        fit: BoxFit.cover,
                                     )
                                   : Image.asset(
                                       'assets/img/tempat_sampah_plastik.png',
                                       width: 110,
-                                      height: 219,
+                                      height: 223,
                                        fit: BoxFit.cover,
                                     );
                             },

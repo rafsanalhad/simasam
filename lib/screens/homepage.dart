@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:simasam/screens/communitypage.dart';
 import 'package:simasam/screens/deteksisampahpage.dart';
 import 'package:simasam/screens/edukasipage.dart';
 import 'package:simasam/modules/userdata.dart';
@@ -18,10 +19,19 @@ class _HomePageState extends State<HomePage> {
   late Future<UserData> futureUserData;
   String name = '';
   @override
-  void initState() {
-    super.initState();
-    futureUserData = UserData.connectToApi('1');
-  }
+ void initState() {
+  super.initState();
+  futureUserData = UserData.connectToApi('1');
+  futureUserData.then((value) {
+    setState(() {
+      name = value.name;
+    });
+  }).catchError((error) {
+    // Handle error if any
+    print('Error occurred: $error');
+  });
+  print(futureUserData);
+}
 
   @override
   Widget build(BuildContext context) {
@@ -66,25 +76,16 @@ class _HomePageState extends State<HomePage> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                       FutureBuilder<UserData>(
-                                future: futureUserData,
-                                builder: (context, snapshot) {
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return CircularProgressIndicator();
-                                  } else if (snapshot.hasError) {
-                                    return Text('Error: ${snapshot.error}');
-                                  } else if (snapshot.hasData) {
-                                    // return Text(snapshot.data!.name);
-                                    return Container(
+                                      
+                                Container(
                                       alignment: Alignment.topLeft,
                                       child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
-                                        Text('Halo, ${snapshot.data!.name}!',
+                                        Text('Halo, $name',
                                           style: TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white)),
-                                      Text('Kesamben, blitar',
+                                      Text('Kesamben, $name',
                                           style: TextStyle(
                                               fontSize: 8,
                                               color: Color(0xFFE0E0E0))),
@@ -93,12 +94,9 @@ class _HomePageState extends State<HomePage> {
                                               fontSize: 14,
                                               color: Color(0xFFE0E0E0)))
                                       ],)
-                                    );
-                                  } else {
-                                    return Text('No data available');
-                                  }
-                                },
-                              ),
+                                    )
+                                  
+                                
                                     ],
                                   )),
                             ],
@@ -237,30 +235,40 @@ class _HomePageState extends State<HomePage> {
                           height: 100, // set tinggi GridView sesuai kebutuhan
                           child: GridView.count(
                             physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true, // atur shrinkWrap ke true
-                            crossAxisCount: 4, // ubah crossAxisCount menjadi 4
+                            shrinkWrap: true,
+                            crossAxisCount: 4,
                             children: [
-                              Container(
-                                child: Center(
-                                  child: Container(
-                                    width: 70,
-                                    height: 100,
-                                    padding: const EdgeInsets.all(12),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFF18654A),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: const Column(
-                                      children: [
-                                        Icon(Icons.home,
-                                            size: 38, color: Colors.white),
-                                        SizedBox(height: 7),
-                                        Text(
-                                          'Tps Terdekat',
-                                          style: TextStyle(
-                                              fontSize: 7, color: Colors.white),
-                                        ),
-                                      ],
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const CommunityPage()));
+                                },
+                                child: Container(
+                                  child: Center(
+                                    child: Container(
+                                      width: 70,
+                                      height: 100,
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFF18654A),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: const Column(
+                                        children: [
+                                          Icon(Icons.home,
+                                              size: 38, color: Colors.white),
+                                          SizedBox(height: 7),
+                                          Text(
+                                            'Komunitas',
+                                            style: TextStyle(
+                                                fontSize: 7,
+                                                color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

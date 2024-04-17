@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "simasam",
+            "request": "launch",
+            "type": "dart",
+            "console": "integratedTerminal" // Tambahkan baris ini
+        },
+        {
+            "name": "simasam (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "console": "integratedTerminal" // Tambahkan baris ini
+        },
+        {
+            "name": "simasam (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "console": "integratedTerminal" // Tambahkan baris ini
+        }
+    ]
+}
