@@ -9,7 +9,7 @@ class GameDragSampah extends StatefulWidget {
 
 class _GameDragSampahState extends State<GameDragSampah> {
   bool checkImage = false;
-    int poin =0;
+  int poin = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +39,7 @@ class _GameDragSampahState extends State<GameDragSampah> {
                     ),
                   ],
                 )),
-            Positioned(
+            Container(
                 child: Container(
               margin: EdgeInsets.only(top: 20),
               alignment: Alignment.topCenter,
@@ -53,140 +53,165 @@ class _GameDragSampahState extends State<GameDragSampah> {
                 data: 'sampah1',
               ),
             )),
-            Positioned(
+            Container(
+              alignment: Alignment.center,
               child: Container(
                   child: Column(
+
+                children: [
+                  Column(
                     children: [
-                      Column(
-                        children: [
-                          Center(
-                            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                               DragTarget(
-                                  onWillAcceptWithDetails: (value) => true,
-                                  onAcceptWithDetails: (value) {
-                                    print(value);
-                                    setState(() {
-                                      checkImage =
-                                          true;
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            DragTarget(
+                              onWillAcceptWithDetails: (value) => true,
+                              onAcceptWithDetails: (value) {
+                                print(value);
+                                setState(() {
+                                  checkImage = true;
+                                  print('accept');
+                                  poin += 10;
+                                });
+                              },
+                              builder: (context, candidates, rejected) {
+                                return (checkImage)
+                                    ? Image.asset(
+                                        'assets/img/tempat_sampah_gelas.png',
+                                        width: 110,
+                                        height: 225,
+                                          fit: BoxFit.cover,
+                                      )
+                                    : Image.asset(
+                                        'assets/img/tempat_sampah_gelas.png',
+                                        width: 110,
+                                        height: 240,
+                                          fit: BoxFit.cover,
+                                      );
+                              },
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 13, left: 10),
+                              child: DragTarget(
+                                onWillAcceptWithDetails: (value) => true,
+                                onAcceptWithDetails: (value) {
+                                  print(value);
+                                  setState(() {
+                                    checkImage = true;
                                     print('accept');
                                     poin += 10;
-                                    });
-                                  },
-                                  builder: (context, candidates, rejected) {
-                                    return (checkImage) ?  Image(
-                                  image: AssetImage(
-                                      'assets/img/tempat_sampah_gelas.png'),
-                                  width: 110,
-                                  height: 219) : Image(
-                                  image: AssetImage(
-                                      'assets/img/tempat_sampah_gelas.png'),
-                                  width: 110,
-                                  height: 219);
-                                  }),
-                               DragTarget(
-                                  onWillAcceptWithDetails: (value) => true,
-                                  onAcceptWithDetails: (value) {
-                                    print(value);
-                                    setState(() {
-                                      checkImage =
-                                          true;
-                                    print('accept');
-                                    poin += 10;
-                                    });
-                                  },
-                                  builder: (context, candidates, rejected) {
-                                    return (checkImage) ?  Image(
-                                  image: AssetImage(
-                                      'assets/img/tempat_sampah_kertas.png'),
-                                  width: 110,
-                                  height: 219) : Image(
-                                  image: AssetImage(
-                                      'assets/img/tempat_sampah_kertas.png'),
-                                  width: 110,
-                                  height: 219);
-                                  }),
-                            ]),
-                          ),
-                        ],
+                                  });
+                                },
+                                builder: (context, candidates, rejected) {
+                                  return (checkImage)
+                                      ? Image.asset(
+                                          'assets/img/tempat_sampah_kertas.png',
+                                          width: 110,
+                                          height: 219,
+                                           fit: BoxFit.cover,
+                                        )
+                                      : Image.asset(
+                                          'assets/img/tempat_sampah_kertas.png',
+                                          width: 110,
+                                          height: 219,
+                                            fit: BoxFit.cover,
+                                        );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      Column(
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              DragTarget(
-                                  onWillAcceptWithDetails: (value) => true,
-                                  onAcceptWithDetails: (value) {
-                                    print(value);
-                                    setState(() {
-                                      checkImage =
-                                          true;
-                                    print('accept');
-                                    poin += 10;
-                                    });
-                                  },
-                                  builder: (context, candidates, rejected) {
-                                    return (checkImage) ?  Image(
-                                  image: AssetImage(
-                                      'assets/img/tempat_sampah_metal.png'),
-                                  width: 110,
-                                  height: 219) : Image(
-                                  image: AssetImage(
-                                      'assets/img/tempat_sampah_metal.png'),
-                                  width: 110,
-                                  height: 219);
-                                  }),
-                            
-                               DragTarget(
-                                  onWillAcceptWithDetails: (value) => true,
-                                  onAcceptWithDetails: (value) {
-                                    print(value);
-                                    setState(() {
-                                      checkImage =
-                                          true;
-                                    print('accept');
-                                    poin += 10;
-                                    });
-                                  },
-                                  builder: (context, candidates, rejected) {
-                                    return (checkImage) ?  Image(
-                                  image: AssetImage(
-                                      'assets/img/tempat_sampah_organik.png'),
-                                  width: 110,
-                                  height: 219) : Image(
-                                  image: AssetImage(
-                                      'assets/img/tempat_sampah_organik.png'),
-                                  width: 110,
-                                  height: 219);
-                                  }),
-                              DragTarget(
-                                  onWillAcceptWithDetails: (value) => true,
-                                  onAcceptWithDetails: (value) {
-                                    print(value);
-                                    setState(() {
-                                      checkImage =
-                                          true;
-                                    print('accept');
-                                    poin += 10;
-                                    });
-                                  },
-                                  builder: (context, candidates, rejected) {
-                                    return (checkImage) ?  Image(
-                                  image: AssetImage(
-                                      'assets/img/tempat_sampah_plastik.png'),
-                                  width: 110,
-                                  height: 219) : Image(
-                                  image: AssetImage(
-                                      'assets/img/tempat_sampah_plastik.png'),
-                                  width: 110,
-                                  height: 219);
-                                  }),
-                            ],
+                          DragTarget(
+                            onWillAcceptWithDetails: (value) => true,
+                            onAcceptWithDetails: (value) {
+                              print(value);
+                              setState(() {
+                                checkImage = true;
+                                print('accept');
+                                poin += 10;
+                              });
+                            },
+                            builder: (context, candidates, rejected) {
+                              return (checkImage)
+                                  ? Image.asset(
+                                      'assets/img/tempat_sampah_metal.png',
+                                      width: 110,
+                                      height: 219,
+                                       fit: BoxFit.cover,
+                                    )
+                                  : Image.asset(
+                                      'assets/img/tempat_sampah_metal.png',
+                                      width: 110,
+                                      height: 219,
+                                       fit: BoxFit.cover,
+                                    );
+                            },
+                          ),
+                          DragTarget(
+                            onWillAcceptWithDetails: (value) => true,
+                            onAcceptWithDetails: (value) {
+                              print(value);
+                              setState(() {
+                                checkImage = true;
+                                print('accept');
+                                poin += 10;
+                              });
+                            },
+                            builder: (context, candidates, rejected) {
+                              return (checkImage)
+                                  ? Image.asset(
+                                      'assets/img/tempat_sampah_organik.png',
+                                      width: 110,
+                                      height: 219,
+                                       fit: BoxFit.cover,
+                                    )
+                                  : Image.asset(
+                                      'assets/img/tempat_sampah_organik.png',
+                                      width: 110,
+                                      height: 219,
+                                       fit: BoxFit.cover,
+                                    );
+                            },
+                          ),
+                          DragTarget(
+                            onWillAcceptWithDetails: (value) => true,
+                            onAcceptWithDetails: (value) {
+                              print(value);
+                              setState(() {
+                                checkImage = true;
+                                print('accept');
+                                poin += 10;
+                              });
+                            },
+                            builder: (context, candidates, rejected) {
+                              return (checkImage)
+                                  ? Image.asset(
+                                      'assets/img/tempat_sampah_plastik.png',
+                                      width: 110,
+                                      height: 236,
+                                       fit: BoxFit.cover,
+                                    )
+                                  : Image.asset(
+                                      'assets/img/tempat_sampah_plastik.png',
+                                      width: 110,
+                                      height: 219,
+                                       fit: BoxFit.cover,
+                                    );
+                            },
                           ),
                         ],
                       ),
                     ],
-                  )),
+                  ),
+                ],
+              )),
             )
           ])),
     ));
