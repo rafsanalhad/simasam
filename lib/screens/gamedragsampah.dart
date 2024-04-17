@@ -58,8 +58,6 @@ class _GameDragSampahState extends State<GameDragSampah> {
                   child: Column(
                     children: [
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Center(
                             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [

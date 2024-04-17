@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:simasam/screens/deteksisampahpage.dart';
 import 'package:simasam/screens/edukasipage.dart';
 import 'package:simasam/modules/userdata.dart';
 import 'package:simasam/screens/gamedragsampah.dart';
@@ -44,8 +45,12 @@ class _HomePageState extends State<HomePage> {
                           bottomLeft: Radius.circular(50),
                           bottomRight: Radius.circular(50))),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Padding(padding: EdgeInsets.only(left: 10, top: 5)),
+                      
+                      Row(
+                        children: [
+                          const Padding(padding: EdgeInsets.only(left: 10, top: 5)),
                       Container(
                         alignment: Alignment.topLeft,
                         padding: const EdgeInsets.only(top: 5),
@@ -53,57 +58,59 @@ class _HomePageState extends State<HomePage> {
                             child: Image.asset('assets/img/th.jpg',
                                 width: 35, height: 35, fit: BoxFit.cover)),
                       ),
-                      Container(
-                          child: Column(
-                        children: [
-                        
-                          Padding(
-                              padding: EdgeInsets.only(top: 10, left: 8),
+                          Container(
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                   FutureBuilder<UserData>(
-                            future: futureUserData,
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return CircularProgressIndicator();
-                              } else if (snapshot.hasError) {
-                                return Text('Error: ${snapshot.error}');
-                              } else if (snapshot.hasData) {
-                                // return Text(snapshot.data!.name);
-                                return Container(
-                                  alignment: Alignment.topLeft,
-                                  child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
-                                    Text('Halo, ${snapshot.data!.name}!',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white)),
-                                  Text('Kesamben, blitar',
-                                      style: TextStyle(
-                                          fontSize: 8,
-                                          color: Color(0xFFE0E0E0))),
-                                  Text('#001',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          color: Color(0xFFE0E0E0)))
-                                  ],)
-                                );
-                              } else {
-                                return Text('No data available');
-                              }
-                            },
-                          ),
-                                ],
-                              )),
+                            children: [
+                              Padding(
+                                  padding: EdgeInsets.only(top: 10, left: 8),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                       FutureBuilder<UserData>(
+                                future: futureUserData,
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return CircularProgressIndicator();
+                                  } else if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  } else if (snapshot.hasData) {
+                                    // return Text(snapshot.data!.name);
+                                    return Container(
+                                      alignment: Alignment.topLeft,
+                                      child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
+                                        Text('Halo, ${snapshot.data!.name}!',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white)),
+                                      Text('Kesamben, blitar',
+                                          style: TextStyle(
+                                              fontSize: 8,
+                                              color: Color(0xFFE0E0E0))),
+                                      Text('#001',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: Color(0xFFE0E0E0)))
+                                      ],)
+                                    );
+                                  } else {
+                                    return Text('No data available');
+                                  }
+                                },
+                              ),
+                                    ],
+                                  )),
+                            ],
+                          )),
                         ],
-                      )),
+                      ),
                       Container(
                           alignment: Alignment.topRight,
                               child: Expanded(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Icon(Icons.notifications,
                                         color: Colors.white),
@@ -264,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const EdukasiPage()));
+                                              const DeteksiSampahPage()));
                                 },
                                 child: Container(
                                   child: Center(

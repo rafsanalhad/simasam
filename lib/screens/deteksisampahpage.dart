@@ -69,6 +69,9 @@ class _DeteksiSampahPageState extends State<DeteksiSampahPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Container(
+
+            ),
             // loading indicator
             _isLoading
                 ? const CircularProgressIndicator()
