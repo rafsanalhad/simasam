@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:simasam/screens/TrashARCleanup.dart';
 import 'package:simasam/screens/deteksisampahpage.dart';
 import 'package:simasam/screens/homepage.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
