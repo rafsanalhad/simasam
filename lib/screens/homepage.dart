@@ -6,6 +6,7 @@ import 'package:simasam/screens/deteksisampahpage.dart';
 import 'package:simasam/screens/edukasipage.dart';
 import 'package:simasam/modules/userdata.dart';
 import 'package:simasam/screens/gamedragsampah.dart';
+import 'package:simasam/screens/quizpage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -332,7 +333,7 @@ class _HomePageState extends State<HomePage> {
                                               size: 38, color: Colors.white),
                                           SizedBox(height: 7),
                                           Text(
-                                            'Edukasi',
+                                            'Game',
                                             style: TextStyle(
                                                 fontSize: 7,
                                                 color: Colors.white),
@@ -349,7 +350,7 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const EdukasiPage()));
+                                              const QuizPage()));
                                 },
                                 child: Container(
                                   child: Center(
@@ -367,7 +368,7 @@ class _HomePageState extends State<HomePage> {
                                               size: 38, color: Colors.white),
                                           SizedBox(height: 7),
                                           Text(
-                                            'Pelaporan',
+                                            'Kuis',
                                             style: TextStyle(
                                                 fontSize: 7,
                                                 color: Colors.white),
