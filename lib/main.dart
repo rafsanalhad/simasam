@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simasam/screens/TrashARCleanup.dart';
-import 'package:simasam/screens/deteksisampahpage.dart';
 import 'package:simasam/screens/homepage.dart';
 
 

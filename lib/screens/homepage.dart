@@ -6,6 +6,8 @@ import 'package:simasam/screens/deteksisampahpage.dart';
 import 'package:simasam/screens/edukasipage.dart';
 import 'package:simasam/modules/userdata.dart';
 import 'package:simasam/screens/gamedragsampah.dart';
+import 'package:simasam/screens/gametrashcleanup.dart';
+import 'package:simasam/screens/profilpage.dart';
 import 'package:simasam/screens/quizpage.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,19 +22,19 @@ class _HomePageState extends State<HomePage> {
   late Future<UserData> futureUserData;
   String name = '';
   @override
- void initState() {
-  super.initState();
-  futureUserData = UserData.connectToApi('1');
-  futureUserData.then((value) {
-    setState(() {
-      name = value.name;
+  void initState() {
+    super.initState();
+    futureUserData = UserData.connectToApi('1');
+    futureUserData.then((value) {
+      setState(() {
+        name = value.name;
+      });
+    }).catchError((error) {
+      // Handle error if any
+      print('Error occurred: $error');
     });
-  }).catchError((error) {
-    // Handle error if any
-    print('Error occurred: $error');
-  });
-  print(futureUserData);
-}
+    print(futureUserData);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,46 +60,49 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      
                       Row(
                         children: [
-                          const Padding(padding: EdgeInsets.only(left: 10, top: 5)),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        padding: const EdgeInsets.only(top: 5),
-                        child: ClipOval(
-                            child: Image.asset('assets/img/th.jpg',
-                                width: 35, height: 35, fit: BoxFit.cover)),
-                      ),
+                          const Padding(
+                              padding: EdgeInsets.only(left: 10, top: 5)),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            padding: const EdgeInsets.only(top: 5),
+                            child: ClipOval(
+                                child: Image.asset('assets/img/th.jpg',
+                                    width: 35, height: 35, fit: BoxFit.cover)),
+                          ),
                           Container(
                               child: Column(
                             children: [
                               Padding(
                                   padding: EdgeInsets.only(top: 10, left: 8),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      
-                                Container(
-                                      alignment: Alignment.topLeft,
-                                      child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
-                                        Text('Halo, $name',
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white)),
-                                      Text('Kesamben, $name',
-                                          style: TextStyle(
-                                              fontSize: 8,
-                                              color: Color(0xFFE0E0E0))),
-                                      Text('#001',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Color(0xFFE0E0E0)))
-                                      ],)
-                                    )
-                                  
-                                
+                                      Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text('Halo, $name',
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white)),
+                                              Text('Kesamben, $name',
+                                                  style: TextStyle(
+                                                      fontSize: 8,
+                                                      color:
+                                                          Color(0xFFE0E0E0))),
+                                              Text('#001',
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Color(0xFFE0E0E0)))
+                                            ],
+                                          ))
                                     ],
                                   )),
                             ],
@@ -106,18 +111,17 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Container(
                           alignment: Alignment.topRight,
-                              child: Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.notifications,
-                                        color: Colors.white),
-                                    Padding(padding: EdgeInsets.only(left: 20)),
-                                    Icon(Icons.search, color: Colors.white),
-                                  ],
-                                ),
-                              ))
+                          child: Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.notifications, color: Colors.white),
+                                Padding(padding: EdgeInsets.only(left: 20)),
+                                Icon(Icons.search, color: Colors.white),
+                              ],
+                            ),
+                          ))
                     ],
                   ),
                 ),
@@ -697,10 +701,22 @@ class _HomePageState extends State<HomePage> {
             label: 'jljlk',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings, color: Color(0xFF32A37F), size: 30),
-            label: 'ljlj',
+            icon: Icon(Icons.person, color: Color(0xFF32A37F), size: 30),
+            label: 'Profil',
           ),
         ],
+        onTap: (int index) {
+          // Ketika BottomNavigationBarItem ditekan, navigasikan ke halaman yang sesuai
+          switch (index) {
+            case 3:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilPage()),
+              );
+              break;
+            // Tambahkan case lain di sini sesuai dengan jumlah BottomNavigationBarItem yang Anda miliki
+          }
+        },
       ),
     );
   }
