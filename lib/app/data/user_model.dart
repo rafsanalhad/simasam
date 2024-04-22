@@ -1,70 +1,54 @@
 class User {
-  Data? data;
-  Support? support;
+  Result? result;
 
-  User({this.data, this.support});
+  User({this.result});
 
   User.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? Data?.fromJson(json['data']) : null;
-    support =
-        json['support'] != null ? Support?.fromJson(json['support']) : null;
+    result = json['result'] != null ? Result?.fromJson(json['result']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final res = <String, dynamic>{};
-    if (data != null) {
-      res['data'] = data?.toJson();
+    final data = <String, dynamic>{};
+    if (result != null) {
+      data['result'] = result?.toJson();
     }
-    if (support != null) {
-      res['support'] = support?.toJson();
-    }
-    return res;
+    return data;
   }
 }
 
-class Data {
+class Result {
   int? id;
+  String? name;
   String? email;
-  String? firstName;
-  String? lastName;
-  String? avatar;
+  String? emailVerifiedAt;
+  String? createdAt;
+  String? updatedAt;
 
-  Data({this.id, this.email, this.firstName, this.lastName, this.avatar});
+  Result(
+      {this.id,
+      this.name,
+      this.email,
+      this.emailVerifiedAt,
+      this.createdAt,
+      this.updatedAt});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Result.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    name = json['name'];
     email = json['email'];
-    firstName = json['first_name'];
-    lastName = json['last_name'];
-    avatar = json['avatar'];
+    emailVerifiedAt = json['email_verified_at'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['id'] = id;
+    data['name'] = name;
     data['email'] = email;
-    data['first_name'] = firstName;
-    data['last_name'] = lastName;
-    data['avatar'] = avatar;
-    return data;
-  }
-}
-
-class Support {
-  String? url;
-  String? text;
-
-  Support({this.url, this.text});
-
-  Support.fromJson(Map<String, dynamic> json) {
-    url = json['url'];
-    text = json['text'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['url'] = url;
-    data['text'] = text;
+    data['email_verified_at'] = emailVerifiedAt;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

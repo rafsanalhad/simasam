@@ -11,9 +11,9 @@ class HomeController extends GetxController {
   void onInit() async {
     super.onInit();
     await userProvider.getUser(1).then((value) {
-      _user = value.body;
+      _user = value;
     });
-    name.value = _user.data!.firstName!;
+    name.value = _user.result!.name!;
   }
 
   @override

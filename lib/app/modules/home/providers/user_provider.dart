@@ -29,5 +29,8 @@ class UserProvider extends GetConnect {
   //     }
   //   });
   // }
-  Future<Response> getUser(int id) => get('/users/$id');
+  Future<User> getUser(int id) async {
+    final data = await get('/api/user/$id');
+    return data.body;
+  }
 }
