@@ -1,38 +1,17 @@
-// ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace
-
 import 'package:flutter/material.dart';
-import 'package:simasam/screens/communitypage.dart';
-import 'package:simasam/screens/deteksisampahpage.dart';
-import 'package:simasam/screens/edukasipage.dart';
-import 'package:simasam/modules/userdata.dart';
-import 'package:simasam/screens/gamedragsampah.dart';
-import 'package:simasam/screens/quizpage.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
+import 'package:simasam/app/modules/community/views/community_view.dart';
+import 'package:simasam/app/modules/gameDragSampah/views/game_drag_sampah_view.dart';
+
+import '../controllers/home_controller.dart';
+
+class HomeView extends GetView<HomeController> {
+  HomeView({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  late Future<UserData> futureUserData;
-  String name = '';
-  @override
- void initState() {
-  super.initState();
-  futureUserData = UserData.connectToApi('1');
-  futureUserData.then((value) {
-    setState(() {
-      name = value.name;
-    });
-  }).catchError((error) {
-    // Handle error if any
-    print('Error occurred: $error');
-  });
-  print(futureUserData);
-}
+  final controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -58,46 +37,58 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      
                       Row(
                         children: [
-                          const Padding(padding: EdgeInsets.only(left: 10, top: 5)),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        padding: const EdgeInsets.only(top: 5),
-                        child: ClipOval(
-                            child: Image.asset('assets/img/th.jpg',
-                                width: 35, height: 35, fit: BoxFit.cover)),
-                      ),
+                          const Padding(
+                              padding: EdgeInsets.only(left: 10, top: 5)),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            padding: const EdgeInsets.only(top: 5),
+                            child: ClipOval(
+                                child: Image.asset('assets/img/th.jpg',
+                                    width: 35, height: 35, fit: BoxFit.cover)),
+                          ),
                           Container(
                               child: Column(
                             children: [
                               Padding(
                                   padding: EdgeInsets.only(top: 10, left: 8),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      
-                                Container(
-                                      alignment: Alignment.topLeft,
-                                      child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
-                                        Text('Halo, $name',
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white)),
-                                      Text('Kesamben, $name',
-                                          style: TextStyle(
-                                              fontSize: 8,
-                                              color: Color(0xFFE0E0E0))),
-                                      Text('#001',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Color(0xFFE0E0E0)))
-                                      ],)
-                                    )
-                                  
-                                
+                                      Container(
+                                        alignment: Alignment.topLeft,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Obx(
+                                              () => Text(
+                                                'Halo, ${controller.name}!',
+                                                style: const TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                            const Text(
+                                              'Kesamben, Blitar',
+                                              style: TextStyle(
+                                                fontSize: 8,
+                                                color: Color(0xFFE0E0E0),
+                                              ),
+                                            ),
+                                            const Text(
+                                              '#001',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFFE0E0E0),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
                                     ],
                                   )),
                             ],
@@ -105,19 +96,17 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                       Container(
-                          alignment: Alignment.topRight,
-                              child: Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.notifications,
-                                        color: Colors.white),
-                                    Padding(padding: EdgeInsets.only(left: 20)),
-                                    Icon(Icons.search, color: Colors.white),
-                                  ],
-                                ),
-                              ))
+                        alignment: Alignment.topRight,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(Icons.notifications, color: Colors.white),
+                            Padding(padding: EdgeInsets.only(left: 20)),
+                            Icon(Icons.search, color: Colors.white),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -141,8 +130,8 @@ class _HomePageState extends State<HomePage> {
                                     0, 3), // changes position of shadow
                               ),
                             ],
-                            borderRadius: BorderRadius.circular(
-                                10), // atur sesuai kebutuhan
+                            borderRadius: BorderRadius.circular(10),
+                            // atur sesuai kebutuhan
                             // TRY THIS: Try changing the color to Color.fromARGB(255, 237, 133, 133
                             color: Colors.white, // ubah warna sesuai kebutuhan
                           ),
@@ -233,7 +222,8 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(height: 10),
                         Container(
                           width: MediaQuery.of(context).size.width - 40,
-                          height: 100, // set tinggi GridView sesuai kebutuhan
+                          height: 100,
+                          // set tinggi GridView sesuai kebutuhan
                           child: GridView.count(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
@@ -241,11 +231,7 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const CommunityPage()));
+                                  Get.to(() => CommunityView());
                                 },
                                 child: Container(
                                   child: Center(
@@ -276,11 +262,11 @@ class _HomePageState extends State<HomePage> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const DeteksiSampahPage()));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) =>
+                                  //             const DeteksiSampahPage()));
                                 },
                                 child: Container(
                                   child: Center(
@@ -311,11 +297,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const GameDragSampah()));
+                                  Get.to(() => GameDragSampahView());
                                 },
                                 child: Container(
                                   child: Center(
@@ -346,11 +328,11 @@ class _HomePageState extends State<HomePage> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const QuizPage()));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) =>
+                                  //             const QuizPage()));
                                 },
                                 child: Container(
                                   child: Center(

@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:simasam/modules/community_controller.dart';
 
-class CommunityPage extends StatelessWidget {
-  const CommunityPage({Key? key}) : super(key: key);
+class CommunityPage extends StatefulWidget {
+  const CommunityPage({super.key});
+
+  @override
+  _CommunityPageState createState() => _CommunityPageState();
+}
+
+class _CommunityPageState extends State<CommunityPage> {
+  CommunityController controller = CommunityController();
+
+  @override
+  void initState() {
+    controller.viewCommunity();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Community Page'),
+        title: const Text('Community Page'),
       ),
       body: Column(
         children: [
@@ -34,7 +48,7 @@ class CommunityPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Muzzarino Akbar',
+                            'Muzzarino Akbar ${controller.count}',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           Container(
@@ -87,9 +101,7 @@ class CommunityPage extends StatelessWidget {
                 ),
                 SizedBox(width: 10), // Spasi antara TextField dan IconButton
                 IconButton(
-                  onPressed: () {
-                    // Tambahkan logika untuk tombol kirim di sini
-                  },
+                  onPressed: controller.increment,
                   icon: Icon(Icons.send),
                 ),
               ],
